@@ -14,7 +14,7 @@ Exercise from lecture [Database Upgrades with Named Volumes](https://www.udemy.c
 
 ## Solution
 
-There ate the commands I ran into the terminal to do the exercise
+Commands I ran into the terminal to do the exercise
 
 - `docker container run -d --name postgres -v psql-data:/var/lib/postgresql/data postgres:9.6.1`
 - `docker container ls -a`
