@@ -1,7 +1,13 @@
-# Docker Training
+# Database Upgrades with Named Volumes
 
-This repository contains all my code about docker training following this [Udemy Course](https://www.udemy.com/course/docker-mastery).
+## Instructions
 
-The repo is split into different branches, one by exercise.
+Exercise from lecture [Database Upgrades with Named Volumes](https://www.udemy.com/course/docker-mastery/learn/lecture/6775726#overview).
 
-The main branch is used as a startup page, no code is supposed to stand here.
+- Database upgrade with containers
+- Create a `postgres` container with a named volume `psql-data` using `postgres:9.6.1`
+- Use Docker Hub to learn `VOLUME` path and versions needed to run it
+- Check logs, stop container
+- Create a new `postgres` container with same named volume using `postgres:9.6.2`
+- Check logs to validate
+- Cleanup images, containers and volumes
