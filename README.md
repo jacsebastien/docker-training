@@ -19,7 +19,7 @@ Exercise from lecture [DNS Round Robin Test](https://www.udemy.com/course/docker
   - Install `curl` (`apk add curl`)
   - Run `curl search:9200` multiple times until you see both "name" fields
 
-### Elasticsearch
+### Elasticsearch version
 
 If you use a more updated version of elasticsearch, you'll have to set memory requirements and change some default environment variables to make it work as a simple single container.
 
@@ -30,3 +30,16 @@ You'll notice the new elasticsearch no longer has random `cluster_name`, so you'
 ## Solution
 
 Commands I ran into the terminal to do the exercise
+
+- `docker network create dns_round_robin`
+- `docker network ls` => Shows the new `dns_round_robin` network with `bridge` driver in the list
+- `docker container run -d --network dns_round_robin --network-alias search elasticsearch:2`
+- `docker container run -d --network dns_round_robin --network-alias search elasticsearch:2`
+- `docker container ls` => Shows the 2 elasticsearch containers with exposed ports `9200` and random names
+- `docker container run -it --rm --network dns_round_robin alpine sh`
+- `nslookup search` => Shows 2 different ip addresses with the same DNS name
+- `apk update`
+- `apk add curl`
+- `curl search:9200`
+- `exit`
+- Stop all containers + remove them and cleanup remaining images.
