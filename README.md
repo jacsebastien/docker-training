@@ -22,4 +22,34 @@ Exercise from lecture [Build a Compose File For a Multi-Container Project](https
 
 See `docker-compose.yml` file.
 
-Commands I ran into the terminal to do the exercise
+In the terminal
+
+- `docker compose up`
+- `docker container ls -a` => Show Drupal and Postgres containers running
+
+Navigate to `http://localhost:8080`
+
+At step 4 (DB setup)
+
+- DB name: `postgres`
+- User: `postgres`
+- Password: value set in `docker-compose.yml` for `POSTGRES_PASSWORD` env variable
+- Advanced options
+  - Host: postgres container's name retrieved from `docker container ls` command
+  - Port number: from `docker container ls`
+
+Once done, go back to the terminal
+
+- `docker compose down` => Will stop and remove the containers but should keep the named volumes
+- `docker compose up`
+
+Refresh `http://localhost:8080` => Should keep config from previous setup and should directly show the welcome page
+
+- `docker compose down -v` => Cleanup containers AND named volumes
+- `docker image rm <drupal-image-id> <postgres-image-id>`
+
+## Verification
+
+- `docker container ls -a` => nothing
+- `docker volume ls` => nothing
+- `docker image ls` => nothing

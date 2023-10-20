@@ -1,0 +1,29 @@
+# Containers. Same as docker run
+services:
+  drupal: # Container's name. This is also DNS name inside network by default
+    image: drupal:9 # Image from Docker Hub
+    ports: # Same as -p in docker run
+      - 8080:80
+    volumes: # Same as -v in docker run
+      # Check Docker Hub to know exposed volumes
+      - drupal-modules:/var/www/html/modules
+      - drupal-profiles:/var/www/html/profiles
+      - drupal-themes:/var/www/html/themes
+      - drupal-sites:/var/www/html/sites
+    # command: # Replace the default CMD specified by the image
+  db:
+    image: postgres:14
+    restart: always # Restart strategy if container crashed
+    environment: # Same as -e in docker run
+      POSTGRES_PASSWORD: pwd123
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+
+volumes: # Same as docker volume create
+  postgres-data:
+  drupal-modules:
+  drupal-profiles:
+  drupal-themes:
+  drupal-sites:
+#
+# networks: # Same as docker network create
