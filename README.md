@@ -1,9 +1,17 @@
-# Docker Training
+# Using Containers for CLI Testing
 
-This repository contains all my code about docker training following this [Docker Mastery: with Kubernetes +Swarm from a Docker Captain](https://www.udemy.com/course/docker-mastery) Udemy course.
+## Instructions
 
-The repo is divided into several branches, one by exercise.
+Exercise from lecture [Using Containers for CLI Testing](https://www.udemy.com/course/docker-mastery/learn/lecture/6758368#overview).
 
-The main branch is used as a startup and documentation page, no code is supposed to stand here.
+- Use different Linux disto containers and check `curl` cli tool version.
+- Use two different terminal windows to start bash in both `centos:7` and `ubuntu:14.04`, using `-it`.
+- Learn the `docker container --rm` option so you can avoid manual cleanup.
+- Ensure `curl` is installed and on atest version for each disto.
+  - Ubuntu: `apt-get update && apt-get install curl`.
+  - CentOS: `yum update curl`.
+- Check `curl --version`.
 
-Each branch contains a README file with the instructions about the exercise, followed by my solution.
+## Solution
+
+Commands I ran into the terminal to do the exercise
