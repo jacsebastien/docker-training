@@ -10,7 +10,7 @@ Exercise from lecture [Compose For Image Building](https://www.udemy.com/course/
 - Let's pin image version from Docker Hub this time.
   It's always a good idea to do that so a new major version doesn't surprise you.
 
-## Dockerfile
+### Dockerfile
 
 - First you need to build a custom Dockerfile using `drupal:9` image.
 - Then run apt package manager command to install git: `apt-get update && apt-get install -y git`
@@ -25,7 +25,7 @@ Exercise from lecture [Compose For Image Building](https://www.udemy.com/course/
   `chown -R www-data:www-data bootstrap`.
 - Then, just to be safe, change the working directory back to its default (from drupal image) at `/var/www/html`
 
-## Compose File
+### Compose File
 
 - We're going to build a custom image in this compose file for drupal service.
 - Rename image to `custom-drupal` as we want to make a new image based on the official `drupal:9`.
@@ -37,7 +37,7 @@ Exercise from lecture [Compose For Image Building](https://www.udemy.com/course/
   - `MARIADB_PASSWORD`
 - Also add a volume to store the DB and avoid loosing it's data.
 
-## Start Containers, Configure Drupal
+### Start Containers, Configure Drupal
 
 - Start containers like before, configure Drupal web install like before.
 - After site comes up, click on `Appearance` in top bar, and notice a new theme called`Bootstrap` is there.
@@ -55,4 +55,40 @@ Exercise from lecture [Compose For Image Building](https://www.udemy.com/course/
 - See `Dockerfile`.
 - See `docker-compose.yml` file.
 
-Commands I ran in the terminal
+In the terminal
+
+- `docker compose up`
+- `docker container ls` => Shows Drupal and MariaDB containers running + their name and exposed ports
+- `docker image ls` => Shows the `custom-drupal` image created from `Dockerfile`
+- `docker volume ls` => Shows the named volumes created
+
+Navigate to `http://localhost:8080`
+
+At step 4 (DB setup)
+
+- Select `MariaDB`
+- Set DB infos from env variable defined in `docker-compose.yml`
+- Advanced options
+  - Host: DB container's name retrieved from `docker container ls` command
+  - Verify port number
+- Once setup is done, select the new appearance as explained in instructions
+
+Go back to the terminal
+
+- `docker compose down` => Will stop and remove the containers but should keep the named volumes
+- `docker container ls -a` => nothing
+- `docker volume ls` => still shows the named volumes created
+- `docker compose up`
+
+Refresh `http://localhost:8080` => Should keep config from previous setup and should directly show the welcome page with the selected theme.
+
+### Cleanup
+
+- `docker compose down -v` => Cleanup containers AND named volumes
+- `docker image rm <drupal-image-id> <mariadb-image-id>`
+
+### Verification
+
+- `docker container ls -a` => nothing
+- `docker volume ls` => nothing
+- `docker image ls` => nothing
